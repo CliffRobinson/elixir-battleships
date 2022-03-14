@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :battleships, Battleships.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "cliff",
+  password: "",
   hostname: "localhost",
   database: "battleships_dev",
   show_sensitive_data_on_connection_error: true,
