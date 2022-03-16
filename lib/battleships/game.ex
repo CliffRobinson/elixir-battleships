@@ -56,23 +56,29 @@ defmodule Battleships.Game do
   end
 
   def gen_board(game, width \\ 7, height \\ 7) do
-    IO.puts("GENBOARD GOT CALLED!")
-    # IO.inspect(game.ships)
     simple_ships =
       for ship <- game.ships do
         %{x: ship.x, y: ship.y}
       end
 
+    simple_shots =
+      for shot <- game.shots do
+        %{x: shot.x, y: shot.y}
+      end
+
+    unhit_ships = simple_ships -- simple_shots
+    misses = simple_shots -- simple_ships
+    hits = simple_ships -- unhit_ships
+
     IO.inspect(simple_ships)
-    # TODO: simple unit tests on 2x2 grid
-    # TODO: figure out array overlap/subtraction
 
     for y_index <- 0..height do
       for x_index <- 0..width do
-        if Enum.member?(simple_ships, %{x: x_index, y: y_index}) do
-          @ship
-        else
-          @blank
+        cond do
+          Enum.member?(unhit_ships, %{x: x_index, y: y_index}) -> @ship
+          Enum.member?(hits, %{x: x_index, y: y_index}) -> @hit
+          Enum.member?(misses, %{x: x_index, y: y_index}) -> @miss
+          true -> @blank
         end
       end
     end
