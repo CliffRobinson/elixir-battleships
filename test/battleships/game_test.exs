@@ -3,10 +3,10 @@ defmodule Battleships.GameTest do
 
   alias Battleships.Game
 
-  @hit "X"
-  @miss "."
-  @blank "_"
-  @ship "4"
+  @hit :hit
+  @miss :miss
+  @blank :blank
+  @ship :ship
 
   describe "gen_board" do
     test "make a blank board" do

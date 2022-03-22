@@ -4,10 +4,10 @@ defmodule Battleships.Game do
   alias __MODULE__
   alias Battleships.{Repo, Ship, ShipCoordGenerator, Shot}
 
-  @hit "X"
-  @miss "."
-  @blank "_"
-  @ship "4"
+  @hit :hit
+  @miss :miss
+  @blank :blank
+  @ship :ship
 
   schema "games" do
     has_many :ships, Ship
@@ -16,21 +16,15 @@ defmodule Battleships.Game do
   end
 
   def create do
-    game =
-      %Game{}
-      |> Repo.insert!()
+    game = Repo.insert!(%Game{})
 
     populate(game)
 
-    pop_game = get_game(game.id)
-
-    gen_board(pop_game)
-    |> IO.inspect()
+    game.id
   end
 
   def populate(game) do
     populate(game, ShipCoordGenerator.generate())
-    # TODO: generate a board structure
   end
 
   def populate(game, {:ok, coords}) do
@@ -70,8 +64,10 @@ defmodule Battleships.Game do
     misses = simple_shots -- simple_ships
     hits = simple_ships -- unhit_ships
 
-    IO.inspect(simple_ships)
+    # IO.inspect(simple_ships)
 
+    #this double comprehension is the same as a comprehension within a comprehension
+    #lol no it isn't! Single comp produces a 64 value single array, separate lines produces 8*8 double array0
     for y_index <- 0..height do
       for x_index <- 0..width do
         cond do

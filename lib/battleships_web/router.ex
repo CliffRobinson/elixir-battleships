@@ -18,6 +18,10 @@ defmodule BattleshipsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    post "/game", PageController, :create_game
+
+    #path spec, module location, "action", which we can access from the socket but doesn't do anything by itself
+    live "/game/:id", BattleshipsLive.Index, :bwug
   end
 
   # Other scopes may use custom stacks.

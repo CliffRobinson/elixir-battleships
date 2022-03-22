@@ -3,7 +3,7 @@ defmodule Battleships.Repo.Migrations.AddShipTable do
 
   def change do
     create table(:ships) do
-      add :game_id,     references(:games)
+      add :board_id,     references(:boards)
       add :x,           :integer
       add :y,           :integer
     end
