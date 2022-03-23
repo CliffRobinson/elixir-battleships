@@ -9,12 +9,12 @@ defmodule Battleships.Ship do
     field :x,             :integer
     field :y,             :integer
 
-    belongs_to :game,     Battleships.Game
+    belongs_to :board,     Battleships.Board
   end
 
   def create(game_id, x, y) do
     %Ship{
-      game_id: game_id,
+      board_id: game_id,
       x: x,
       y: y
     }

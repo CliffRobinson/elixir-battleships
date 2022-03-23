@@ -15,7 +15,7 @@ defmodule BattleshipsWeb.PageController do
 
   def get_game(conn, %{"id" => id}) do
     board = Game.get_game(id)
-    |> Game.gen_board()
+    |> Game.gen_array_board()
 
     conn
     |> assign(:board, board)

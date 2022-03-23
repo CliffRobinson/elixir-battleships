@@ -1,17 +1,31 @@
 <h1> Time to do battle in a ship! </h1>
 
+<h3> Your board </h3>
 <div style="display:grid; grid-template-columns: repeat(8, 1fr); gap: 0px" >
-<%= for {row, y_index} <- Enum.with_index(@board) do %>
-    
+<%= for {row, y_index} <- Enum.with_index(@board_a) do %>
         <%= for {cell, x_index} <- Enum.with_index(row) do %>
             <button
                 phx-click="coord_btn_press"
-                value={"#{@game_id}:#{x_index}:#{y_index}"}
+                value={"#{@game_id}:#{@id_a}:#{x_index}:#{y_index}"}
                 style="border: 2px solid black; font-size: 30px;"
             ><%= button_text(cell) %>
             </button>
         <% end %>
-  
+<% end %>
 
+</div>
+
+<h3> Evil Nazi Bolshevik Board </h3>
+
+<div style="display:grid; grid-template-columns: repeat(8, 1fr); gap: 0px" >
+<%= for {row, y_index} <- Enum.with_index(@board_b) do %>
+        <%= for {cell, x_index} <- Enum.with_index(row) do %>
+            <button
+                phx-click="coord_btn_press"
+                value={"#{@game_id}:#{@id_b}:#{x_index}:#{y_index}"}
+                style="border: 2px solid black; font-size: 30px;"
+            ><%= button_text(cell) %>
+            </button>
+        <% end %>
 <% end %>
 </div>
