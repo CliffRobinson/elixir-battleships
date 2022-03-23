@@ -10,7 +10,7 @@ defmodule BattleshipsWeb.PageController do
   def create_game(conn, _params) do
     game_id = Game.create()
 
-    redirect(conn, to: "/game/#{game_id}")
+    redirect(conn, to: "/game/#{game_id}/a")
   end
 
   def get_game(conn, %{"id" => id}) do

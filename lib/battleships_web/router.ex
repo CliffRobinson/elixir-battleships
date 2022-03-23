@@ -21,7 +21,7 @@ defmodule BattleshipsWeb.Router do
     post "/game", PageController, :create_game
 
     #path spec, module location, "action", which we can access from the socket but doesn't do anything by itself
-    live "/game/:id", BattleshipsLive.Index, :bwug
+    live "/game/:id/:player", BattleshipsLive.Index, :bwug
   end
 
   # Other scopes may use custom stacks.

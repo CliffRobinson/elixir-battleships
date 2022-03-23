@@ -61,19 +61,43 @@ defmodule BattleshipsWeb.BattleshipsLive.Index do
     {:noreply, socket}
   end
 
-  def button_text(:blank) do
+  def handle_params(params, uri, socket) do
+    IO.inspect(params, label: "params")
+
+    %{"player" => player} = params
+
+    {:noreply, assign(socket, [player: player])}
+  end
+
+  def button_text(:blank, _show_ship) do
     " "
   end
 
-  def button_text(:ship) do
+  def button_text(:ship, true) do
     "🛳"
   end
 
-  def button_text(:miss) do
+  def button_text(:ship, false) do
+    " "
+  end
+
+  def button_text(:miss, _show_ship) do
     "🌊"
   end
 
-  def button_text(:hit) do
+  def button_text(:hit, _show_ship) do
     "🤯"
+  end
+
+  def other(player) do
+    if (player == "a") do "b" else "a" end
+  end
+
+  def get_board(board_a, board_b, player) do
+    if (player == "a") do board_a else board_b end
+  end
+
+  def get_id(id_a, id_b, player) do
+    if (player == "a") do id_a else id_b end
   end
 end
