@@ -17,10 +17,11 @@ defmodule Battleships.Board do
   end
 
   def create(game_id) do
-    #how does this relate to the module name / schema def?
-    board = Repo.insert!(%Board{
-      game_id: game_id
-    })
+    # how does this relate to the module name / schema def?
+    board =
+      Repo.insert!(%Board{
+        game_id: game_id
+      })
 
     populate(board)
 
@@ -44,11 +45,8 @@ defmodule Battleships.Board do
   end
 
   def get_board(board_id) do
-    board =
-      Repo.get(Board, board_id)
-      |> Repo.preload([:ships, :shots])
-
-    board
+    Repo.get(Board, board_id)
+    |> Repo.preload([:ships, :shots])
   end
 
   def gen_array_board(board, width \\ 7, height \\ 7) do
@@ -68,8 +66,8 @@ defmodule Battleships.Board do
 
     # IO.inspect(simple_ships)
 
-    #this double comprehension is the same as a comprehension within a comprehension
-    #lol no it isn't! Single comp produces a 64 value single array, separate lines produces 8*8 double array0
+    # this double comprehension is the same as a comprehension within a comprehension
+    # lol no it isn't! Single comp produces a 64 value single array, separate lines produces 8*8 double array0
     for y_index <- 0..height do
       for x_index <- 0..width do
         cond do

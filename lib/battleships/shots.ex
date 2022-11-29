@@ -12,11 +12,11 @@ defmodule Battleships.Shot do
   end
 
   def shoot(game_id, x, y) do
-  %Shot{
-    board_id: game_id,
-    x: x,
-    y: y
-  }
-  |> Repo.insert!()
+    %Shot{
+      board_id: game_id,
+      x: x,
+      y: y
+    }
+    |> Repo.insert!()
   end
 end

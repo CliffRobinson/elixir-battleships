@@ -13,12 +13,12 @@ defmodule BattleshipsWeb.PageController do
     redirect(conn, to: "/game/#{game_id}/a")
   end
 
-  def get_game(conn, %{"id" => id}) do
-    board = Game.get_game(id)
-    |> Game.gen_array_board()
+  # def get_game(conn, %{"id" => id}) do
+  #   board = Game.get_game(id)
+  #   |> Game.gen_array_board()
 
-    conn
-    |> assign(:board, board)
-    |> render("game.html")
-  end
+  #   conn
+  #   |> assign(:board, board)
+  #   |> render("game.html")
+  # end
 end
